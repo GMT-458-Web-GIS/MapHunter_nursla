@@ -38,7 +38,7 @@ This design meets the required deliverables, including:
 The game's interface will consist of a control panel on the left and a map on the right:
 
 -------------------------------------------------------------
-| GeoGame - Hacettepe (Start / Reset buttons) |
+ GeoGame - Hacettepe (Start / Reset buttons) 
 -------------------------------------------------------------
 
 | Left Panel (Stats & Controls)                                   | Map             |
