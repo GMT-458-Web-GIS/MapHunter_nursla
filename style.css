@@ -1,0 +1,448 @@
+/*  MAPHUNTER: TRAINER EDITION  */
+
+:root {
+    --primary: #2ecc71;   
+    --accent: #3498db; 
+    --danger: #ff6b6b;    
+    --dark: #2c3e50;     
+    --light: #ffffff;    
+    --ui-bg: rgba(255, 255, 255, 0.9); 
+    --shadow: 0 8px 24px rgba(149, 157, 165, 0.2); 
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Varela Round', sans-serif; 
+    overflow: hidden;
+    background-color: #f0f2f5;
+    color: var(--dark);
+}
+
+
+#map {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+#top-bar, .radar-circle, #map-info, #sensor-panel {
+    pointer-events: none !important;
+}
+
+.leaflet-marker-icon {
+    pointer-events: auto !important;
+    z-index: 999999 !important;
+   
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.leaflet-marker-icon:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+#start-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(46, 204, 113, 0.8));
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.card-content {
+    background: var(--light);
+    padding: 40px;
+    border-radius: 40px; 
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.card-content h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--accent);
+    font-size: 42px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.subtitle {
+    color: #95a5a6;
+    font-size: 16px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.rules-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: left;
+    margin-bottom: 25px;
+    border: 2px solid #e9ecef;
+}
+
+.rules-box h3 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--dark);
+    margin-top: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rules-box ul li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #555;
+    list-style-type: none; 
+    position: relative;
+    padding-left: 20px;
+}
+
+.rules-box ul li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.icons-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.icon-item {
+    background: #fff;
+    padding: 8px 15px;
+    border-radius: 50px;
+    border: 2px solid #eee;
+    font-size: 13px;
+    font-weight: bold;
+    color: #777;
+}
+
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 6px 0 #27ae60;
+    position: relative;
+    top: 0;
+}
+
+button:active {
+    top: 6px;
+    box-shadow: 0 0 0 #27ae60;
+}
+
+
+#top-bar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 15px;
+    width: 90%;
+    max-width: 600px;
+    justify-content: center;
+}
+
+#top-bar div {
+    background: var(--ui-bg);
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: var(--dark);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+}
+
+/* Score ve timer ıcons(CSS Pseudo-element) */
+#score::before { content: "⭐"; }
+#timer::before { content: "⏱️"; }
+
+/* PANEL (Tracker List) */
+#sensor-panel {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 220px;
+    background: var(--ui-bg);
+    border-radius: 25px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 4px solid white; 
+}
+
+.sensor-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    color: #95a5a6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+}
+
+#nearest-distance {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 32px;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+#signal-bar {
+    width: 100%;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+#signal-level {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #f1c40f, #e67e22); 
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+
+.sensor-alert {
+    animation: shake 0.5s infinite;
+    border-color: var(--danger) !important;
+}
+@keyframes shake {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    25% { transform: translateY(-50%) rotate(2deg); }
+    75% { transform: translateY(-50%) rotate(-2deg); }
+    100% { transform: translateY(-50%) rotate(0deg); }
+}
+
+/*  MAP INFO */
+#map-info {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--ui-bg);
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: #7f8c8d;
+    box-shadow: var(--shadow);
+    font-weight: bold;
+}
+#zoom-level { color: var(--accent); }
+
+/* GAME OVER SCREEN */
+#game-over {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--light);
+    padding: 50px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 0 0 100vw rgba(0,0,0,0.5); 
+    z-index: 10000;
+    max-width: 400px;
+    width: 90%;
+}
+
+#game-over h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--dark);
+    font-size: 40px;
+    margin: 0 0 10px 0;
+}
+
+#game-over button {
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 12px 30px;
+}
+
+/*game animations */
+
+.radar-circle {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border: 4px solid rgba(52, 152, 219, 0.4);
+    border-radius: 50%;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    animation: ripple 2s infinite;
+    background: rgba(52, 152, 219, 0.1);
+}
+
+@keyframes ripple {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; border-width: 4px; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; border-width: 0px; }
+}
+
+/* Spawn (Pop efect) */
+.spawn-glow { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+
+.glow-orange { animation: bounce 2s infinite; }
+@keyframes bounce { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-10px); } 
+}
+
+
+.glow-red { animation: wobble 0.5s infinite; filter: hue-rotate(90deg); }
+@keyframes wobble { 
+    0% { transform: rotate(0deg); } 
+    25% { transform: rotate(5deg); } 
+    75% { transform: rotate(-5deg); } 
+    100% { transform: rotate(0deg); } 
+}
+
+.catch-anim { animation: flyUp 0.4s ease-in forwards; }
+@keyframes flyUp { 
+    to { transform: translateY(-50px) scale(0.5); opacity: 0; } 
+}
+
+.player-walk { animation: playerBob 0.3s ease-in-out; }
+@keyframes playerBob {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -5px; }
+}
+
+/* LEAFLET MAP LAYERS CONTROL STYLE  */
+.leaflet-control-layers {
+    background: var(--ui-bg) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--shadow) !important;
+    border: 2px solid #fff !important;
+    font-family: 'Fredoka', sans-serif !important;
+    color: var(--dark) !important;
+    padding: 5px !important;
+    margin-top: 80px !important; 
+    margin-right: 20px !important;
+}
+
+.leaflet-control-layers-toggle {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/854/854878.png') !important;
+    background-size: 24px 24px !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50%;
+}
+
+.leaflet-control-layers-expanded {
+    padding: 15px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    width: auto !important;
+    border-radius: 20px !important;
+}
+
+.leaflet-control-layers label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.leaflet-control-layers-base label:hover {
+    color: var(--primary);
+}
+
+
+.leaflet-control-layers input[type="radio"] {
+    accent-color: var(--primary); 
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+/*  DARK MODE*/
+body.dark-mode {
+    --ui-bg: rgba(30, 35, 45, 0.9); 
+    --dark: #ecf0f1;      
+    --light: #2c3e50;     
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.6); 
+    background-color: #121212; 
+}
+
+body.dark-mode .card-content {
+    background: #1e272e;
+    border-color: #485460;
+}
+
+body.dark-mode .rules-box {
+    background: #2f3640;
+    border-color: #353b48;
+}
+
+body.dark-mode .rules-box ul li {
+    color: #dcdde1;
+}
+
+body.dark-mode .sensor-title {
+    color: #7f8fa6;
+    border-bottom-color: #353b48;
+}
+
+body.dark-mode #signal-bar {
+    background: #000;
+}
+
+
+body.dark-mode .leaflet-control-layers {
+    background: rgba(30, 35, 45, 0.95) !important;
+    border-color: #485460 !important;
+    color: #ecf0f1 !important;
+}
+
+body.dark-mode .leaflet-control-layers-expanded {
+    background: rgba(30, 35, 45, 0.95) !important;
+}

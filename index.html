@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Varela+Round&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>MapHunter: Signal Ops</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+</head>
+
+<body>
+
+<div id="start-screen">
+    <div class="card-content">
+        <h1>📡 MAPHUNTER</h1>
+        <p class="subtitle">Regional Signal Detection Simulation</p>
+        
+        <div class="rules-box">
+            <h3>Mission Briefing</h3>
+            <ul>
+                <li>🎯 <strong>Objective:</strong> Clear all targets or reach 400 points within 60 seconds.</li>
+                <li>🕹️ <strong>Controls:</strong> Use <b>W-A-S-D</b> or <b>Arrow Keys</b> to move across the map.</li>
+                <li>🔍 <strong>Scanner:</strong> Monitor the right panel. It glows <span style="color:#e74c3c">RED</span> when a target is close (200m).</li>
+                <li>🔭 <strong>Zoom:</strong> Some targets are hidden! You must <b>Zoom In/Out</b> to reveal them.</li>
+            </ul>
+        </div>
+
+        <div class="icons-info">
+            <div class="icon-item">🟢 <span>Easy (Visible)</span></div>
+            <div class="icon-item">🟠 <span>Medium (12s Timer)</span></div>
+            <div class="icon-item">🔴 <span>Hard (5s - Flees!)</span></div>
+        </div>
+
+        <button onclick="startGame()">START MISSION</button>
+    </div>
+</div>
+
+<div id="top-bar">
+    <div id="score">Score: 0</div>
+    <div id="timer">60</div>
+</div>
+
+<div id="map"></div>
+
+<div id="sensor-panel">
+    <div class="sensor-title">📡 SIGNAL SCANNER</div>
+    <div id="nearest-distance">Initializing...</div>
+    <div id="signal-bar"><div id="signal-level"></div></div>
+</div>
+
+<div id="map-info">
+    <div>Zoom: <span id="zoom-level">14</span></div>
+    <div id="mouse-coords">Lat: -, Lon: -</div>
+</div>
+
+<div id="game-over">
+    <h1>GAME OVER</h1>
+    <p id="finalScore"></p>
+    <button onclick="location.reload()">PLAY AGAIN</button>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
