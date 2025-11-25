@@ -13,7 +13,8 @@
 
 🚀 **Live Demo:** [Play MapHunter](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
 ---
-<img width="688" height="836" alt="image" src="https://github.com/user-attachments/assets/11b64746-1410-4777-b360-907cdd1bd794" />
+<img width="764" height="431" alt="image" src="https://github.com/user-attachments/assets/c3d4cd5a-2f1d-4ed1-bc16-aed024eb6b6b" />
+
 ---
 
 ## 🎮 Game Mechanics
