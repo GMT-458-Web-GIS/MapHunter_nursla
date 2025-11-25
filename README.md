@@ -1,126 +1,88 @@
 # 📍 GeoGame: Hacettepe Campus Exploration
  
-**Project :** GeoGame (Gamified Spatial Exploration on Beytepe Campus)  
+**Project :** MapHunter: Signal Ops
 **Author:** Nur Sıla Özkan
 
 ---
 ![geogame](https://github.com/user-attachments/assets/877bedaf-3a8f-4df6-a753-33cde736bd76)
 
 
-### 1️⃣ Project Overview
+# 📡 MapHunter: Signal Ops
 
-**GeoGame** is a browser-based geospatial game where players navigate the Hacettepe Beytepe Campus map and collect virtual items placed at random locations. The game uses **MapLibre GL JS** for map rendering, and players collect items by clicking on them—all within a time limit.
+**MapHunter** is a location-based spatial game built with **Leaflet.js** and **Turf.js**. Players take on the role of a signal operator, navigating a digital map to locate and secure hidden targets using a proximity sensor system before time runs out.
 
-Key mechanics:
-- 5 items with different difficulty levels
-- Time-limited: 5 minutes total
-- Hard items disappear if not collected within 60 seconds
-- Score increases with each collected item
+🚀 **Live Demo:** [Play MapHunter](https://gmt-458-web-gis.github.io/geogame-nursla/)
 
 ---
 
-### 2️⃣ Game Design Requirements
+## 🎮 Game Mechanics
 
-This design meets the required deliverables, including:
+### 1. The Mission
+You have **90 seconds** to reach a target score of **400 points**. 
+- Hidden creatures appear on the map based on difficulty levels.
+- Use your **Sensor Panel** to detect how close you are to a target.
 
-- Game flow description  
-- UI layout (wireframe)  
-- Number of missions / items  
-- Lives system (if any)  
-- Technology stack  
-- Project folder structure  
-- Git workflow proposal  
+### 2. Proximity Sensor & Radar
+- **Signal Bar:** Fills up as you get closer to a target.
+- **Alert:** The panel glows <span style="color:red">RED</span> when you are within 200m.
+- **Radar:** A visual ripple effect surrounds your player location.
 
----
-
-### 3️⃣ UI Layout — Wireframe Sketch
-
-The game's interface will consist of a control panel on the left and a map on the right:
-
--------------------------------------------------------------
- GeoGame - Hacettepe (Start / Reset buttons) 
--------------------------------------------------------------
-
-| Left Panel (Stats & Controls)                                   | Map             |
-| --------------------------------------------------------------- | --------------- |
-| Score: 0                                                        |                 |
-| Time: 5:00                                                      | [Map Container] |
-| Remaining: 5                                                    |                 |
-| Current Zoom: 15                                                |                 |
-| [Start] [Pause]                                                 |                 | 
-
-
-
+### 3. Zoom-Based Visibility
+Not all targets are visible at once!
+- **Easy Targets:** Visible at lower zoom levels.
+- **Hard Targets:** Only appear when you **zoom in deeply (Level 17+)**.
 
 ---
 
-### 4️⃣ How the Game Will Progress
+## 🕹️ Controls
 
-1️⃣ Game starts when **Start** is clicked.
-
-2️⃣ Items are randomly placed across the map using non-repeating coordinates.
-
-3️⃣ Each item has a point value and difficulty:
-   - 📝 Easy: 100 pts  
-   - 🔑 Medium: 150–180 pts  
-   - 🏆 Hard: 250 pts (expires after 60s)
-     
-4️⃣ Player collects an item by clicking it.
-
-5️⃣ The game ends when:
-   - All items are collected 🏆 → Victory  
-   - Time runs out ⏰ → Game Over
+| Key / Action | Function |
+| :--- | :--- |
+| **W / ▲** | Move North |
+| **S / ▼** | Move South |
+| **A / ◄** | Move West |
+| **D / ►** | Move East |
+| **Scroll / Pinch** | Zoom In/Out (Crucial for finding targets) |
+| **Mouse Hover** | View coordinates |
 
 ---
 
-### 5️⃣ Game Details
+## 🛠️ Technologies Used
 
-| Feature          | Specification |
-|------------------|---------------|
-| Number of items  | 5             |
-| Time limit       | 5 minutes     |
-| Lives            | None          |
-| Game engine      | MapLibre GL JS |
-
----
-
-### 6️⃣ Technology Stack
-
-- MapLibre GL JS
-- HTML, CSS3, JavaScript 
-- Optional: Deck.gl, Chart.js, D3 for further visualization
+* **[Leaflet.js](https://leafletjs.com/)**: For rendering the interactive map and layers.
+* **[Turf.js](https://turfjs.org/)**: For geospatial analysis (calculating distance between player and targets).
+* **HTML5 & CSS3**: For the HUD, animations, and responsive design.
+* **Map Tiles**:
+    * *OpenStreetMap* (Standard)
+    * *Esri World Imagery* (Satellite)
+    * *CartoDB* (Dark/Light Matter)
 
 ---
 
-### 7️⃣ Suggested Project Structure
+## 🎨 Features
 
-/ (repo root)
-
-│
-├─ index.html
-
-├─ css/
-│   └─ style.css
-
-├─ js/
-│   └─ game.js
-
-├─ assets/
-│   └─ icons/
-
-└─ README.md
-
-
+- **Dark Mode Support:** The UI automatically switches to a dark theme when "Night Mode" map layer is selected.
+- **Dynamic Difficulty:**
+    - 🟢 **Easy:** Static targets.
+    - 🟠 **Medium:** Targets disappear after 20 seconds.
+    - 🔴 **Hard:** High score, but they flee quickly (10s lifespan)!
+- **Responsive UI:** Works on desktop with a specialized HUD.
 
 
 ---
 
-### 8️⃣ How to Run the Project Locally
 
-1. Clone the repository:
-git clone <my-repo-url>
+## 📦 Play 
 
-2. Serve locally using:
+1. **Clone the repository**
+   ```bash
+   git clone [https://gmt-458-web-gis.github.io/MapHunter_nursla/](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
+
+
+
+
+
+
 
 .
 .
