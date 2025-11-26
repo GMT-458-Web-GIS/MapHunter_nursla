@@ -75,6 +75,8 @@ Since some Pokémon are hidden, you must rely on your sensor:
 
 ---
 ![geogame](https://github.com/user-attachments/assets/877bedaf-3a8f-4df6-a753-33cde736bd76)
+
+(designed game scheme)
 ---
 
 
