@@ -1,11 +1,13 @@
 const CENTER_LAT = 39.866580;
 const CENTER_LON = 32.733756;
 
+const OFFSET = 0.009; 
+
 const GAME_BOUNDS = {
-   minLon: CENTER_LON - 0.015, 
-    minLat: CENTER_LAT - 0.020, 
-    maxLon: CENTER_LON + 0.015, 
-    maxLat: CENTER_LAT + 0.020
+    minLon: CENTER_LON - OFFSET, 
+    minLat: CENTER_LAT - OFFSET, 
+    maxLon: CENTER_LON + OFFSET, 
+    maxLat: CENTER_LAT + OFFSET
 };
 
 const START_LAT = CENTER_LAT;
