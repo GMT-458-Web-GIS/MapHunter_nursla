@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Varela+Round&display=swap" rel="stylesheet">
 
     <meta charset="UTF-8">
-    <title>MapHunter: Signal Ops</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MapHunter: Pokémon Edition</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -20,32 +21,60 @@
 
 <div id="start-screen">
     <div class="card-content">
-        <h1>📡 MAPHUNTER</h1>
-        <p class="subtitle">Regional Signal Detection Simulation</p>
+        <h1> MAP HUNTER</h1>
+        <p class="subtitle">Location-Based Catch Simulation</p>
         
         <div class="rules-box">
-            <h3>Mission Briefing</h3>
-            <ul>
-                <li>🎯 <strong>Objective:</strong> Clear all targets or reach 400 points within 60 seconds.</li>
-                <li>🕹️ <strong>Controls:</strong> Use <b>W-A-S-D</b> or <b>Arrow Keys</b> to move across the map.</li>
-                <li>🔍 <strong>Scanner:</strong> Monitor the right panel. It glows <span style="color:#e74c3c">RED</span> when a target is close (200m).</li>
-                <li>🔭 <strong>Zoom:</strong> Some targets are hidden! You must <b>Zoom In/Out</b> to reveal them.</li>
-            </ul>
+            <h3>📍 How to Play?</h3>
+            
+            <div class="tutorial-grid">
+                <div class="step-item">
+                    <div class="step-icon">🏃</div>
+                    <h4>Move</h4>
+                    <p>Use <b>W-A-S-D</b> or Arrow Keys to walk around the map.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">📡</div>
+                    <h4>Check Radar</h4>
+                    <p>If the right panel turns <b>RED</b> and shakes, you are close!</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">🔍</div>
+                    <h4>Zoom In</h4>
+                    <p>Some Pokémon hide. <b>Zoom In</b> on the map to reveal them!</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                💡 <b>TIP:</b> Double-click is disabled. Single click a Pokémon to catch!
+            </div>
         </div>
 
-        <div class="icons-info">
-            <div class="icon-item">🟢 <span>Easy (Visible)</span></div>
-            <div class="icon-item">🟠 <span>Medium (12s Timer)</span></div>
-            <div class="icon-item">🔴 <span>Hard (5s - Flees!)</span></div>
+        <div class="poke-info">
+            <div class="poke-card easy">
+                <span>🟢 Easy</span>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" width="40">
+                <strong>+25 Pts</strong>
+            </div>
+            <div class="poke-card medium">
+                <span>🟠 Medium (Timed)</span>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" width="40">
+                <strong>+50 Pts</strong>
+            </div>
+            <div class="poke-card hard">
+                <span>🔴 Hard (Flees!)</span>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" width="40">
+                <strong>+100 Pts</strong>
+            </div>
         </div>
 
-        <button onclick="startGame()">START MISSION</button>
+        <button onclick="startGame()">START ADVENTURE</button>
     </div>
 </div>
 
 <div id="top-bar">
     <div id="score">Score: 0</div>
-    <div id="timer">60</div>
+    <div id="timer">120</div>
 </div>
 
 <div id="map"></div>

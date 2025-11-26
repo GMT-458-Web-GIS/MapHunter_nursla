@@ -1,4 +1,4 @@
-/*  MAPHUNTER: TRAINER EDITION  */
+/* MAPHUNTER: TRAINER EDITION  */
 
 :root {
     --primary: #2ecc71;   
@@ -25,7 +25,6 @@ body {
     color: var(--dark);
 }
 
-
 #map {
     height: 100vh;
     width: 100vw;
@@ -39,7 +38,6 @@ body {
 .leaflet-marker-icon {
     pointer-events: auto !important;
     z-index: 999999 !important;
-   
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -107,43 +105,6 @@ body {
     gap: 10px;
 }
 
-.rules-box ul li {
-    margin-bottom: 8px;
-    font-size: 15px;
-    color: #555;
-    list-style-type: none; 
-    position: relative;
-    padding-left: 20px;
-}
-
-.rules-box ul li::before {
-    content: "•";
-    color: var(--primary);
-    font-weight: bold;
-    font-size: 20px;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-.icons-info {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.icon-item {
-    background: #fff;
-    padding: 8px 15px;
-    border-radius: 50px;
-    border: 2px solid #eee;
-    font-size: 13px;
-    font-weight: bold;
-    color: #777;
-}
-
-
 button {
     background: var(--primary);
     color: white;
@@ -163,7 +124,6 @@ button:active {
     top: 6px;
     box-shadow: 0 0 0 #27ae60;
 }
-
 
 #top-bar {
     position: absolute;
@@ -193,7 +153,7 @@ button:active {
     backdrop-filter: blur(10px);
 }
 
-/* Score and timer ıcons(CSS Pseudo-element) */
+/* Score and timer icons */
 #score::before { content: "⭐"; }
 #timer::before { content: "⏱️"; }
 
@@ -248,11 +208,11 @@ button:active {
     transition: width 0.3s ease;
 }
 
-
 .sensor-alert {
     animation: shake 0.5s infinite;
     border-color: var(--danger) !important;
 }
+
 @keyframes shake {
     0% { transform: translateY(-50%) rotate(0deg); }
     25% { transform: translateY(-50%) rotate(2deg); }
@@ -260,7 +220,7 @@ button:active {
     100% { transform: translateY(-50%) rotate(0deg); }
 }
 
-/*  MAP INFO */
+/* MAP INFO */
 #map-info {
     position: absolute;
     bottom: 30px;
@@ -305,8 +265,7 @@ button:active {
     padding: 12px 30px;
 }
 
-/*game animations */
-
+/* Animations */
 .radar-circle {
     width: 150px;
     height: 150px;
@@ -325,17 +284,14 @@ button:active {
     100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; border-width: 0px; }
 }
 
-/* Spawn (Pop efect) */
 .spawn-glow { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
-
 
 .glow-orange { animation: bounce 2s infinite; }
 @keyframes bounce { 
     0%, 100% { transform: translateY(0); } 
     50% { transform: translateY(-10px); } 
 }
-
 
 .glow-red { animation: wobble 0.5s infinite; filter: hue-rotate(90deg); }
 @keyframes wobble { 
@@ -356,7 +312,7 @@ button:active {
     50% { margin-top: -5px; }
 }
 
-/* LEAFLET MAP LAYERS CONTROL STYLE  */
+/* LEAFLET CONTROL LAYERS */
 .leaflet-control-layers {
     background: var(--ui-bg) !important;
     border-radius: 20px !important;
@@ -397,14 +353,13 @@ button:active {
     color: var(--primary);
 }
 
-
 .leaflet-control-layers input[type="radio"] {
     accent-color: var(--primary); 
     transform: scale(1.2);
     margin-right: 8px;
 }
 
-/*  DARK MODE*/
+/* DARK MODE */
 body.dark-mode {
     --ui-bg: rgba(30, 35, 45, 0.9); 
     --dark: #ecf0f1;      
@@ -436,7 +391,6 @@ body.dark-mode #signal-bar {
     background: #000;
 }
 
-
 body.dark-mode .leaflet-control-layers {
     background: rgba(30, 35, 45, 0.95) !important;
     border-color: #485460 !important;
@@ -447,15 +401,12 @@ body.dark-mode .leaflet-control-layers-expanded {
     background: rgba(30, 35, 45, 0.95) !important;
 }
 
-/* Hide mobile controls by default (for Desktop) */
+/* Mobile Controls */
 #mobile-controls {
     display: none;
 }
 
-/* Rules only for screens smaller than 768px (Tablet/Mobile) */
 @media (max-width: 768px) {
-    
-   
     #mobile-controls {
         display: flex;
         flex-direction: column;
@@ -509,7 +460,6 @@ body.dark-mode .leaflet-control-layers-expanded {
         font-size: 10px;
     }
 
-
     #top-bar {
         width: 95%;
         top: 10px;
@@ -520,16 +470,105 @@ body.dark-mode .leaflet-control-layers-expanded {
         font-size: 16px;
     }
 
+    #map-info { display: none; }
+    
+    .rules-box { display: none; }
+    
+    .card-content h1 { font-size: 28px; }
+}
 
-    #map-info {
-        display: none; 
+/* START SCREEN STYLES  */
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.step-item h4 {
+    margin: 10px 0 5px 0;
+    color: var(--accent);
+}
+
+.step-item p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.step-icon {
+    font-size: 30px;
+    background: #f0f2f5;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.alert-box {
+    background: #fff3cd;
+    color: #856404;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    text-align: center;
+    border: 1px solid #ffeeba;
+}
+
+.poke-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.poke-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 10px 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 2px solid transparent;
+    transition: transform 0.2s;
+}
+
+.poke-card:hover {
+    transform: translateY(-5px);
+}
+
+.poke-card span {
+    font-size: 11px;
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.poke-card strong {
+    font-size: 14px;
+    color: var(--dark);
+    margin-top: 5px;
+}
+
+.poke-card.easy { border-color: #2ecc71; }
+.poke-card.medium { border-color: #f39c12; }
+.poke-card.hard { border-color: #e74c3c; }
+
+@media (max-width: 768px) {
+    .tutorial-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
-    
-    .rules-box {
-        display: none; 
+    .poke-info {
+        gap: 5px;
     }
-    
-    .card-content h1 {
-        font-size: 28px;
+    .poke-card span {
+        font-size: 9px;
     }
 }
